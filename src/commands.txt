@@ -1,0 +1,612 @@
+1.dir
+dir 列出当前目录中的文件和文件夹
+语法：
+dir [drive:][path][filename] [/a] [/b] [/c] [/d] [/p] [/q] [/r] [/s] [/t] [/w]
+
+参数说明
+drive：指定目录的驱动器。
+
+path：指定目录的路径。
+
+filename：指定要显示的文件名。
+
+/a:显示隐藏文件
+
+/b:仅显示目录中文件的名称,不显示大小、日期等信息。
+
+/c:文件大小按千字节而非字节显示。
+
+/d:仅显示目录名,不显示文件信息。
+
+/p:按页显示目录列表。
+
+/q:显示文件和目录的所有者。
+
+/r:反向显示列表。
+
+/s:显示指定目录及其所有子目录中的文件。
+
+/t:按文件创建时间排序。
+
+/w:按列出宽度显示列表
+
+示例
+dir C:\Windows /a /s :显示C:\Windows及子目录下所有的文件,包括隐藏文件。
+
+dir /od :按日期顺序显示目录列表。
+
+dir /ad /b 结合使用多个参数,例如 dir /ad /b 会仅列出目录中的隐藏文件名称。
+
+dir /s 会递归列出指定目录的所有子目录中的文件。
+
+例如:dir c:\windows /s 会列出C:\windows 下所有的子文件夹和文件。
+
+2.cd
+cd 更改目录
+语法：
+语法为: cd [/d] [drive:][path]
+
+参数说明
+cd … 进入上一级目录。
+
+cd \ 进入根目录。
+
+cd 目录名 进入指定的目录。
+
+cd /d D:\ 切换到D盘。
+
+cd /d C:\ 切换到C盘。
+
+cd …/… 返回上两级目录。
+
+cd path 切换到指定路径的目录。
+
+cd /d E:path 切换E盘下的指定目录路径。
+
+cd / 也是进入根目录。
+
+cd - 切换到上一个操作所在目录。
+
+cd $OLDPWD 切换到上一个操作所在目录。
+
+cd \users\username\documents 切换到具体路径。
+
+3.md
+md 创建一个新的文件夹
+语法：
+md [drive:]path
+
+参数说明
+drive - 驱动器号,默认为当前驱动器。
+
+path - 要创建的目录路径和名称。
+
+md命令的常用:
+
+md newfolder 在当前目录下创建新目录newfolder
+
+md c:\test\newfolder 在C盘test目录下创建newfolder目录
+
+若在c盘中没有test文件夹，会创建一个test文件夹，再在test文件夹中创建newfolder文件
+
+md …\newdir 在上一级目录创建newdir目录
+
+md /? 查看md命令的帮助信息
+
+md只能创建一个文件夹，加了txt等后缀也无法创建文本等。
+
+4.rd
+rd 用于删除目录和文件夹
+语法：
+rd [/s] [/q] [drive:]path
+
+参数说明
+/s - 删除指定目录及其所有子目录。
+
+/q - 安静模式,不提示确认删除信息。
+
+drive: - 目标目录所在的驱动器。
+
+path - 要删除的目录路径。
+
+rd temp 删除当前目录下的temp空目录 ，只有里面没有任何文件或者文件夹才能删除
+
+rd /s temp 删除temp目录及其所有子目录 需要确认
+
+rd /q temp Quiet模式删除tmep目录,不提示确认
+
+rd /? 查看rd命令的帮助信息
+
+rd命令可以用来快速删除空目录,但要注意不可直接删除非空目录（结合命令del /s dirName*.*，或者deltree命令等）,需要结合参数来删除包含文件或子目录的顶层目录。
+
+5.copy
+copy 用于复制文件和目录
+语法；
+copy 源文件 目标文件
+
+copy [/y | /-y] [/a | /b] 源文件 [/a | /b] [+ 源文件 [/a | /b] [+ …]] [目标目录]
+
+参数说明
+/y - 删除目标文件不确认提示
+
+/-y - 删除目标文件需要确认提示
+
+/a - 表示ASCII文本文件
+
+/b - 表示二进制文件
+
+1.copy file.txt newfile.txt 将file.txt复制为newfile.txt，没有文件不能复制
+
+copy只能复制文件，不能复制文件夹
+
+2.copy /a file1.txt + file2.txt newfile.txt 合并复制file文件
+
+当file1和file2中都有内容时候，按顺序排列。
+
+3.copy *.txt file\ 复制所有txt文件到file目录
+
+4.copy /y c:\data d:\backup\ 复制c:\data全目录到d:\backup，且不需要确认
+
+5.copy /? 查看copy命令帮助
+
+6.move
+move 用于剪切或重命名文件，移动
+语法：
+move [/y | /-y] 源文件 [+ 源文件]… 目标目录
+
+move [/y | /-y] 源文件 新文件名
+
+参数说明:
+/y - 删除目标文件时不确认提示
+
+/-y - 删除目标文件需要确认提示
+
+源文件 - 要移动的文件
+
+目标目录 - 移动到的目录
+
+新文件名 - 重命名后的文件名
+
+move file.txt newfile 将file.txt移动到newfile目录
+
+若newfile文件不存在，会自动生成一个newfile的文件，而不是文件夹，且file文件消失
+
+move /y img.jpg pictures\ 无提示将img.jpg移动到pictures文件夹
+
+move *.txt txtfiles\ 移动所有txt文件到txtfiles目录
+
+move report.doc newreport.doc 将report.doc重命名为newreport.doc
+
+. move /? 查看move命令的帮助信息
+
+7.del
+del 用于删除一个或多个文件和目录
+语法：
+del [/p] [/f] [/s] [/q] [/a[[:]attributes]] names
+
+参数说明
+/p - 删除每个文件之前提示确认
+
+/f - 强制删除只读文件
+
+/s - 删除所有子目录中的指定文件
+
+/q - 安静模式,删除时不显示提示信息
+
+/a - 根据指定的属性删除文件
+
+names - 要删除的文件名、目录名或通配符
+
+del test.txt 删除当前目录下的test.txt文件。
+
+del /f test.txt 强制删除当前目录下的只读文件test.txt。
+
+del /s *.txt 删除当前目录及所有子目录中以.txt结尾的文件。
+
+del /q d:\temp Quiet模式删除d盘temp目录下的所有文件及目录,不提示。
+
+del /? 查看del命令的帮助信息。
+
+8.cls
+cls 用于清空DOS命令行窗口的显示内容
+参数说明
+cls 这将直接清空命令行窗口,清除所有已显示的内容。
+
+9.mkdir
+mkdir 用于在DOS系统中创建一个新的目录
+语法：
+mkdir [drive:]path
+
+参数说明
+drive - 目标驱动器号,默认为当前驱动器
+
+path - 要创建的目录路径及名称
+
+mkdir newfolder 在当前驱动器路径下创建新目录newfolder
+
+mkdir c:\test\newfolder 在C盘的test目录下创建newfolder目录
+
+mkdir \tmp 在根目录创建tmp目录
+
+mkdir D:\data\temp 在D盘的data目录下创建temp目录
+
+与md相同
+
+10.rmdir
+rmdir 用于删除目录
+语法：
+rmdir [/s] [/q] [drive:]path
+
+参数说明
+/s - 删除该目录及其所有子目录
+
+/q - 安静模式,删除目录时不提示确认
+
+drive: - 目标目录所在的驱动器
+
+path - 要删除的目录路径
+
+rmdir temp 删除当前目录下的空目录temp
+
+rmdir /s temp 删除temp目录及其所有子目录
+
+rmdir /q d:\test Quiet模式删除d盘下的test空目录,不提示确认
+
+rmdir只能删除空目录,若需要强制删除非空目录可以用deltree命令。
+
+11.type
+type 用于显示文本文件的内容
+语法：
+type 文件名 显示指定文件内容
+
+type 文件1 文件2 … 显示多个指定文件的内容
+
+type 通配符 显示符合通配符的文件的内容
+
+参数说明
+/p - 按页显示文件内容
+
+/n - 在每个行前显示行号
+
+/a - ASCII模式显示文件内容
+
+type file.txt - 显示file.txt文件的内容
+
+type *.txt - 显示当前目录下所有txt文件的内容
+
+type test1.txt test2.txt - 显示test1和test2的内容
+
+type /p test.txt - 按页显示test.txt的内容
+
+type /n /p test.txt - 显示test.txt内容及行号
+
+可以方便快速地查看文本文件的内容,避免打开编辑器。
+
+12.ren
+ren 重命名文件或文件夹或目录
+语法：
+ren [drive:][path]文件名 新文件名
+
+ren [drive:][path]文件名 新路径
+
+参数说明
+drive: - 文件所在驱动器号
+
+path - 文件路径
+
+文件名 - 原文件名
+
+新文件名 - 目标文件名
+
+新路径 - 目标文件路径
+
+ren test.txt newtest.txt 将test.txt重命名为newtest.txt
+
+ren abc.jpg abcd.jpg 将abc.jpg重命名为abcd.jpg
+
+ren abc.txt .\backup\abcd.txt 将abc.txt移动到backup目录并重命名为abcd.txt
+
+ren d:\test newtest 重命名d盘下得tset目录为newtest
+
+ren *.txt *.back 将当前目录下所有txt文件重命名为back文件
+
+ren ?.txt *.back 将当前目录下单个字符开头的txt文件重命名为back文件
+
+ren命令既可以重命名文件也可以移动文件
+
+13.ipconfig
+ipconfig 用于显示或修改TCP/IP协议网络配置信息
+常用参数
+ipconfig 显示当前计算机的IP地址、子网掩码等信息
+
+ipconfig /all 显示详细的IP配置信息,包括DHCP服务器地址等
+
+ipconfig /release [adapter] 释放指定网卡的IP地址
+
+ipconfig /renew [adapter] 续约指定网卡的IP地址
+
+ipconfig /flushdns 清空DNS解析器缓存
+
+ipconfig /displaydns 显示DNS缓存中的条目
+
+ipconfig /registerdns 刷新DHCP和DNS的注册
+
+ipconfig /showclassid [adapter] 显示指定网卡的DHCP类ID
+
+ipconfig /setclassid [adapter] [classID] 修改指定网卡的DHCP类ID
+
+14.ping
+ping 用于测试网络连接
+参数说明
+ping IP地址 测试网络宿主连接
+
+ping 域名 测试网络域名连接
+
+ping -t IP地址 持续ping目标不停止
+
+ping -n 次数 IP地址 ping指定次数
+
+ping -l 大小 IP地址 设置数据包大小进行测试
+
+ping支持的参数:
+
+-t:持续不断地ping
+
+-a:解析返回的ip地址
+
+-n: ping的次数
+
+-l: 设置数据包大小
+
+-f: 设置勿片断标记
+
+-i: 设置TTL时间
+
+-v: 详细输出
+
+-r: 记录路由过程
+
+-s: 设置发送的数据包个数
+
+ping www.baidu.com向百度网站发送4个ICMP请求数据包,测试网络连通性。
+
+ping -t 192.168.0.1 持续ping 192.168.0.1,直到强制停止。用于持续观察目标主机的网络连接状况。
+
+ping -n 10 -l 500 www.google.com 向谷歌网站发送10个大小为500字节的数据包,测试网络连接。
+
+ping -f -i 5 192.168.1.1 ping 192.168.1.1,设置勿片段标记和TTL为5。用于测试网络设备对大包的处理。
+
+ping -s 100 -v 8.8.8.8 ping 8.8.8.8,发送100个数据包,并详细输出报告。
+
+ping -r 192.168.10.254 显示到192.168.10.254的路由过程。
+
+15.netstat
+netstat命令用于显示Windows网络连接、路由表、接口统计信息等
+参数说明
+netstat -a 显示所有连接和侦听端口
+
+netstat -n 以数字形式显示地址和端口号
+
+netstat -b 显示应用程序名称和PID
+
+netstat -e 显示以太网统计信息
+
+netstat -r 显示路由表
+
+netstat -s 显示网络统计信息
+
+netstat -p proto 显示指定协议的连接
+
+netstat -o 显示拥有的连接
+
+netstat -an | find “端口号” 查找指定端口的连接
+
+netstat -abn | find “进程名” 查找应用程序的连接
+
+示例：
+netstat -ano 显示所有连接信息,包括进程ID和本地/远程地址与端口。
+
+netstat -s 显示网络统计信息,比如TCP、UDP、ICMP的数据接收发送总数。
+
+netstat -ab 显示网络连接对应的进程信息和应用程序名称。
+
+netstat -n | find “3389” 找出端口号包含3389的连接,用于查找远程桌面连接。
+
+netstat -p tcp | find “8080” 显示所有TCP协议中本地或远程端口为8080的连接。
+
+netstat -rn 显示路由表信息,查看网络连接的网关和网络路由。
+
+netstat -e 显示以太网接口的统计信息,比如字节数、数据包数等。
+
+netstat -o 显示当前计算机拥有的连接信息。
+
+16.shutdown
+shutdown命令用于关闭、重启或注销计算机
+参数说明
+shutdown -s 关闭计算机
+
+shutdown -r 重启计算机
+
+shutdown -l 注销当前用户,返回登录界面
+
+shutdown -h 关机到Hybrid模式
+
+shutdown -a 取消已运行的shutdown命令
+
+shutdown -c “注释” 添加注释信息
+
+shutdown -f -t 60 指定分钟后强制关闭
+
+shutdown -s -t 0 立即关闭计算机
+
+shutdown /? 查看帮助信息
+
+shutdown -s -t 300 -c “系统更新” # 5分钟后关机,并写上注释信息
+
+shutdown -a # 取消前一个关机命令
+
+shutdown命令需要管理员权限,可以用来定时关闭、重启或注销计算机。是管理计算机运行的重要工具。
+
+17 tasklist
+tasklist 用于显示本地或远程计算机上当前运行的进程和服务信息
+参数说明
+tasklist 显示所有正在运行的进程
+
+tasklist /m 显示应用程序名称和模块
+
+tasklist /svc 显示服务信息
+
+tasklist /fi “条件” 查找符合条件的进程
+
+tasklist /fo 格式化输出
+
+tasklist /nh 不显示列头
+
+tasklist /v 显示详细信息
+
+tasklist /svc /fi “条件” 查找服务
+
+tasklist /s 系统 连接远程系统
+
+tasklist /u 用户名称 显示用户进程
+
+tasklist /fi “imagename eq chrome.exe” 显示chrome进程
+
+tasklist /m 浏览器.exe 显示应用及相关模块
+
+tasklist /v /fo csv > proc.csv 输出csv格式进程列表
+
+tasklist 显示所有正在运行的进程列表,包括映像名称、PID、会话ID等信息。
+
+tasklist /svc 显示所有运行的服务信息。
+
+tasklist /m notepad.exe 显示notepad.exe进程及相关的DLL模块信息。
+
+tasklist /fi “status eq running” 只显示状态为运行中的进程。
+
+tasklist /fi “USERNAME ne NT AUTHORITY\SYSTEM” 显示当前用户的进程列表。
+
+tasklist /s IP地址 /u 用户名称 连接远程计算机并显示指定用户的进程。
+
+tasklist /fo csv > proc.csv 以CSV格式输出进程列表到proc.csv文件。
+
+tasklist /nh /v 用详细格式显示进程,不包含列头。
+
+18.taskkill
+taskkill 用于终止指定的进程或任务
+参数说明
+taskkill /im 应用名 - 强制结束应用程序
+
+taskkill /pid PID - 根据PID结束进程
+
+taskkill /f -强制终止进程
+
+taskkill /t - 终止进程和子进程
+
+taskkill /fi - 使用条件结束任务进程
+
+taskkill /f /im notepad.exe - 强制结束notepad进程
+
+taskkill /pid 2345 - 结束PID为2345的进程
+
+taskkill /im http - 结束名中含http的所有进程
+
+taskkill /f /fi “STATUS eq RUNNING” - 强制结束所有运行中的进程
+
+taskkill /s ip /u user /p passwd /im * - 远程结束进程
+
+Dos命令中创建空文件的方法
+在DOS命令中,创建新的空文件可以使用copy或type命令。
+
+1.使用copy命令创建文件
+copy con 文件名.txt
+
+然后输入内容,按Ctrl+Z保存并退出。
+
+例如:
+
+copy con test.txt
+
+这是新创建的test文件
+
+内容
+
+^Z
+
+2.使用type命令创建文件
+type nul > 文件名.txt
+
+这将创建一个空的文件名.txt文件。
+
+例如:
+
+type nul > test.txt
+
+这样就会在当前目录下创建一个空的test.txt文件。
+
+3.使用重定向创建文件
+命令 > 文件名.txt
+
+例如:
+
+echo. > test.txt
+
+以上都是通过DOS命令来创建一个新的空文件。
+
+Dos命令中创建非空文件的方法
+1.使用copy命令,从已有文件复制内容
+语法: copy 源文件.txt 新文件.txt
+
+示例: copy test.txt newfile.txt
+
+这样newfile.txt就包含了test.txt的内容。
+
+2.使用type命令写入内容
+语法: echo 内容 > 新文件.txt
+
+示例: echo 这是新的文件内容 > newfile.txt
+
+3.使用重定向写入内容
+语法: 命令输出 > 新文件.txt
+
+示例: dir > newfile.txt
+
+这样newfile.txt就包含了dir命令的输出内容。
+
+4.使用copy con命令手动输入内容
+语法: copy con 新文件.txt
+
+然后输入内容,按Ctrl+Z保存退出。
+
+5.使用编辑器新建文件
+例如:edit 新文件.txt
+
+使用netsh命令设置IP地址
+在DOS系统中,可以通过下面的步骤使用netsh命令来设置IP地址:
+
+1.进入netsh接口配置模式: netsh interface ip
+
+2.设置静态IP地址:
+
+netsh interface ip set address “本地连接” static 10.0.0.100 255.255.255.0 10.0.0.1
+这里的"本地连接"是网卡名,"10.0.0.100"是设置的IP地址,"255.255.255.0"是子网掩码,"10.0.0.1"是默认网关。
+
+3.设置DNS服务器地址:
+
+netsh interface ip set dns “本地连接” static 8.8.8.8 primary
+
+netsh interface ip add dns “本地连接” 8.8.4.4 index=2
+
+这里分别设置了两个DNS服务器地址。
+
+4.重新启动网络接口:
+
+netsh interface ip set interface “本地连接” disable
+
+netsh interface ip set interface “本地连接” enable
+
+5.验证配置:
+
+ipconfig /all
+
+以上步骤即可通过netsh命令设置静态IP地址和DNS服务器地址。设置后需要重新启动网络接口使其生效。
