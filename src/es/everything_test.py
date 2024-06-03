@@ -21,7 +21,7 @@ EVERYTHING_REQUEST_HIGHLIGHTED_PATH = 0x00004000
 EVERYTHING_REQUEST_HIGHLIGHTED_FULL_PATH_AND_FILE_NAME = 0x00008000
 
 # dll imports
-everything_dll = ctypes.WinDLL("./Everything64.dll")
+everything_dll = ctypes.WinDLL("./es/Everything64.dll")
 everything_dll.Everything_GetResultDateModified.argtypes = [ctypes.c_int, ctypes.POINTER(ctypes.c_ulonglong)]
 everything_dll.Everything_GetResultSize.argtypes = [ctypes.c_int, ctypes.POINTER(ctypes.c_ulonglong)]
 everything_dll.Everything_GetResultFileNameW.argtypes = [ctypes.c_int]
@@ -70,5 +70,4 @@ def my_query(filename):
         res.append(ctypes.wstring_at(filename))
     return res
 
-
-print(my_query("oo"))
+# print(my_query("oo"))

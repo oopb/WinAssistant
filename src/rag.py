@@ -11,8 +11,8 @@ from langchain_core.chat_history import BaseChatMessageHistory
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables.history import RunnableWithMessageHistory
 
-from run import run_cmd
 from cmd_parse import extract_cmds_from_markdown
+from run import run_cmd
 
 _ = load_dotenv(find_dotenv())
 
